@@ -10,18 +10,25 @@ import com.estudo.spring.model.Evento;
 import com.estudo.spring.repository.EventoRepository;
 
 
+
+
 @RestController
 public class EventoController {
 
+	
 	@Autowired
 	private EventoRepository eventoRepository;
 	
-
+	 @RequestMapping(method=RequestMethod.GET,value="/chamartelacadastroevento") //Define a url que quando for requisitada chamara o metodo
+	    public String chamartelacadastroevento(){
+	      
+	        return "evento/formevento";
+	    }
 	
 
 	@RequestMapping(method=RequestMethod.POST,value="/cadastrarevento")
 	public ModelAndView form(Evento evento) {
-		ModelAndView mv=new ModelAndView("/evento/listaeventos");
+		ModelAndView mv=new ModelAndView("evento/listaeventos");
 		eventoRepository.save(evento);
 		
 		return mv;
@@ -35,12 +42,14 @@ public class EventoController {
 	public ModelAndView listaEventos()
 	{
 
-		ModelAndView mv=new ModelAndView("/evento/listaeventos");
+		ModelAndView mv=new ModelAndView("evento/listaeventos");
 		Iterable<Evento> eventos = eventoRepository.findAll();
 		mv.addObject("eventos",eventos);
 		return mv;
 		
 		
 	}
+	
+	
 	
 }

@@ -1,37 +1,34 @@
 package com.estudo.spring.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class IndexController {
 
-	@RequestMapping(value="/")
-	public String index() {
-		return "index";
-		
-	}
+
+
 	
 	/**
-	 * 
+	 * 	
 	 * 
 	 * Coloquei esse metodo para testar
 	 * Funcionou...o redirecionamento
-	 * @param response
-	 * @throws IOException
-	 */
+	 
+	 
 	 @RequestMapping("/foo")
 	  void handleFoo(HttpServletResponse response) throws IOException {
-	    response.sendRedirect("/");
+	    response.sendRedirect("index");
 	  }
+	 */
+	
 	 
-	 @RequestMapping(value="/chamartelacadastroevento") //Define a url que quando for requisitada chamara o metodo
-	    public String chamartelacadastroevento(){
-	      
-	        return "evento/formevento";
-	    }
+	 @RequestMapping(method=RequestMethod.GET,value="/")
+		public String index() {
+			return "index";
+			
+		}	
+	 
+	
 }
