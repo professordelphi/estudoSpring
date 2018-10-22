@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+
+
 @SuppressWarnings("serial")
 @Entity
 public class Evento implements Serializable {
@@ -24,10 +27,15 @@ public class Evento implements Serializable {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+	
 	private String nome;
 	private String local;
+	
 	private String data;
+	
 	private String horario;
+	
+	
 	public String getNome() {
 		return nome;
 	}
@@ -43,9 +51,13 @@ public class Evento implements Serializable {
 	public String getData() {
 		return data;
 	}
+	
+
 	public void setData(String data) {
 		this.data = data;
 	}
+	
+	
 	public String getHorario() {
 		return horario;
 	}

@@ -2,20 +2,33 @@
 
 <html xmlns:th="http://thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head><title>Lista de Eventos</title></head>
+<head><title>Lista de Eventos</title>
+<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+</head>
 <body>
 <h1>Lista de Eventos </h1>
-<h3> <a href="/home"> Cadastrar Evento</a></h3>
-<h3> <a href="/listaev"> Lista de eventos</a></h3>
+ <a href="/chamartelacadastroevento"> Cadastrar Evento</a>
+ <a href="/listaev"> Lista de eventos</a>
 
 
-<div th:each="evento: ${eventos}">
+<div th:each="evento:${eventos}" class="container">
  <div class="row">
 
+<p><span th:text="${evento.codigo}"></span></p>
 <p><span th:text="${evento.nome}"></span></p>
 <p><span th:text="${evento.local}"></span></p>
 <p><span th:text="${evento.data}"></span></p>
 <p><span th:text="${evento.horario}"></span></p>
+
+
+
+<a th:href="@{/seuContexto/{codigo}(codigo = ${evento.codigo}) }">Atualizar</a>
+<a th:href="@{/deleteEvento/{codigo}(codigo = ${evento.codigo}) }">Excluir</a>
+
 </div>
 
 

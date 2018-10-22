@@ -8,6 +8,9 @@ import com.estudo.spring.model.Evento;
 
 @Repository
 @Transactional
-public interface EventoRepository extends CrudRepository<Evento,String>{
+public interface EventoRepository extends CrudRepository<Evento,Long>{
 
+	
+	Evento findByCodigo(Long codigo);
+	
 }
