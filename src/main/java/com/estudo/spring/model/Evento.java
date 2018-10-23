@@ -64,6 +64,11 @@ public class Evento implements Serializable {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
+	@Override
+	public String toString() {
+		return "Evento [codigo=" + codigo + ", nome=" + nome + ", local=" + local + ", data=" + data + ", horario="
+				+ horario + "]";
+	}
 	
 
 }
