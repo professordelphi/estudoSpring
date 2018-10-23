@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -120,21 +121,20 @@ public class EventoController {
 	 * O metodo abaixo nao retornou o json e sim tela vazia pois o ModelAndView precisa de um objeto na camada visual 
 	 * para mostrar o conteudo da consulta
 	 */
-	@RequestMapping(method=RequestMethod.GET,value="/listaevAPI",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ModelAndView listaEventosAPI()
+	@RequestMapping(method=RequestMethod.GET,value="/listaevAPI/{nome}",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Evento> listaEventosAPI(@PathVariable("nome") String nome)
 	{
 
 		
-		Iterable<Evento> eventos = eventoRepository.findAll();
+		List<Evento> eventos= eventoRepository.findByNome(nome);
 
-		ModelAndView mv=new ModelAndView("evento/eventojson");
-	
 		
-		mv.addObject("eventos",eventos.toString());
+		LOGGER.info("Lista de eventos "+ eventos.get(0).getData());
+		
 		
 		LOGGER.info("Lista de eventos "+ eventos.toString());
 	
-	    return mv;
+	    return eventos;
 	  }
 
 	

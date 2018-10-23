@@ -6,13 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 
 
 
 @SuppressWarnings("serial")
 @Entity
+@NamedQuery(name = "Evento.findByNome",
+query = "SELECT e FROM Evento e WHERE e.nome =:nome ")
 public class Evento implements Serializable {
+	
+	
+	
 	
 	@SuppressWarnings("unused")
 	private static final long SerialVersionUID = 1L;
