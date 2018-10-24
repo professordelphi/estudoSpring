@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +38,7 @@ public class EventoController {
 	 * Executa o cadastro de evento
 	 * observação: O ModelAndView usado com o @RestController funcionou mas com o @Controller não funcionou
 	 */
-	@RequestMapping(method=RequestMethod.POST,value="/cadastrarEvento",consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(method=RequestMethod.POST,value="/cadastrarEvento")
 	public ModelAndView form(Evento evento) {
 		ModelAndView mv=new ModelAndView("evento/listaeventos");
 		eventoRepository.save(evento);
@@ -164,6 +163,57 @@ public class EventoController {
 	 	    return eventos;
  }
 
+	     
+	     
+	     @RequestMapping(method=RequestMethod.GET,value="/listaevAPINomeAndData",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	 	public List<Evento> listaEventosAPI(@PathVariable("nome") String nome,@PathVariable("data") String data)
+	 	{
+
+	 		
+	 		@SuppressWarnings("unchecked")
+			List<Evento> eventos= (List<Evento>) eventoRepository.findByNomeAndData(nome, data);
+
+	 		
+	 		LOGGER.info("Lista de eventos "+ data);
+	 		
+	 		
+	 		LOGGER.info("Lista de eventos "+ eventos.toString());
+	 	
+	 	    return eventos;
+	 	  }
+	     
+	     
+	     /**
+	      * Coloquei o metodo createTicket para testar um cadastro e retorna um json
+	      * funcionou, isso é importante para integrar com o Angular
+	      * 
+	      * @param evento
+	      * @return
+	      */
+	                @RequestMapping(method=RequestMethod.POST,value="/tickets2")
+	     	        public Evento createTicket(Evento evento) {
+	     
+	             Evento savedTicket = eventoRepository.save(evento);
+	     
+	             return savedTicket;
+	     
+	         }
+	     
+	     
+	     /**
+	      * 
+	      * 
+	      *  @PostMapping("/tickets")
+27
+    public Ticket createTicket(@RequestBody Ticket ticket) {
+28
+        Ticket savedTicket = ticketService.createTicket(ticket);
+29
+        return savedTicket;
+30
+    }
+v
+	      */
 }
 
 

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 
@@ -13,8 +14,9 @@ import javax.persistence.NamedQuery;
 
 @SuppressWarnings("serial")
 @Entity
-@NamedQuery(name = "Evento.findByNome",
-query = "SELECT e FROM Evento e WHERE e.nome =:nome ")
+@NamedQueries({
+@NamedQuery(name = "Evento.findByNome",query = "SELECT e FROM Evento e WHERE e.nome =:nome "),
+@NamedQuery(name = "Evento.findByNomeAndData",query = "SELECT e FROM Evento e WHERE e.nome =:nome and e.data=:data")} )
 public class Evento implements Serializable {
 	
 	
