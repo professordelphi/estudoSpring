@@ -164,8 +164,8 @@ public class EventoController {
  }
 
 	     
-	     
-	     @RequestMapping(method=RequestMethod.GET,value="/listaevAPINomeAndData",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	     //precisa testar novamente
+	     @RequestMapping(method=RequestMethod.GET,value="/listaevAPINomeAndData")
 	 	public List<Evento> listaEventosAPI(@PathVariable("nome") String nome,@PathVariable("data") String data)
 	 	{
 
@@ -199,21 +199,35 @@ public class EventoController {
 	     
 	         }
 	     
-	     
-	     /**
-	      * 
-	      * 
-	      *  @PostMapping("/tickets")
-27
-    public Ticket createTicket(@RequestBody Ticket ticket) {
-28
-        Ticket savedTicket = ticketService.createTicket(ticket);
-29
-        return savedTicket;
-30
-    }
-v
-	      */
+
+/**
+*
+@Entity
+@Table(name = "PEDIDOS")
+public class PedidoEntity implements Serializable {
+
+    @EmbeddedId
+    private PedidoId id;
+
+    @Column(name = "STATUS")
+    private Integer status;
+
+    @Column(name = "DATA_ENTREGA")
+    private LocalDateTime dataEntrega;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumns(value = {
+        @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE" ),
+    @JoinColumn(name = "EMPRESA", referencedColumnName = "EMPRESA" )})
+    private ClienteEntity cliente;
+
+}
+*
+
+
+Sugestão CRIAR VIEW COM 2 CAMPOS NOME E DATA PARA PESQUISA COMPOSTA
+*/	     
+	   
 }
 
 
