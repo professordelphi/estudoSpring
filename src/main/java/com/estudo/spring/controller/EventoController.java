@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -164,23 +165,41 @@ public class EventoController {
  }
 
 	     
-	     //precisa testar novamente
+	
+	     @RequestMapping(method=RequestMethod.GET,value="/chamaFormEventoNomeAndData")
+	 	public ModelAndView chamaFormEventoAPINomeAndData()
+	 	{
+ModelAndView mv=new ModelAndView("evento/formlocalizarnomeanddata");
+	 			 	
+	    	 return mv;
+	 	
+	 	}
+	     
+	     //Troquei de @RequestPath para @RequestParam
 	     @RequestMapping(method=RequestMethod.GET,value="/listaevAPINomeAndData")
-	 	public List<Evento> listaEventosAPI(@PathVariable("nome") String nome,@PathVariable("data") String data)
+	 	public Evento listaEventosAPI(@RequestParam("nome") String nome,@RequestParam("data") String data)
 	 	{
 
 	 		
-	 		@SuppressWarnings("unchecked")
-			List<Evento> eventos= (List<Evento>) eventoRepository.findByNomeAndData(nome, data);
+	    	 
+	    	 LOGGER.info("Lista de eventos campo data "+ data);
+	    	 LOGGER.info("Lista de eventos campo nome "+ nome);
+	 		
+		
+			Evento eventos=  eventoRepository.findByNomeAndData(nome, data);
 
 	 		
-	 		LOGGER.info("Lista de eventos "+ data);
 	 		
 	 		
 	 		LOGGER.info("Lista de eventos "+ eventos.toString());
 	 	
 	 	    return eventos;
 	 	  }
+	     
+	     
+	     
+	     
+	     
 	     
 	     
 	     /**

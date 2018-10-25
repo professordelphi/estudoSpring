@@ -14,9 +14,12 @@ import javax.persistence.NamedQuery;
 
 @SuppressWarnings("serial")
 @Entity
-@NamedQueries({
+@NamedQueries(
+		{
 @NamedQuery(name = "Evento.findByNome",query = "SELECT e FROM Evento e WHERE e.nome =:nome "),
-@NamedQuery(name = "Evento.findByNomeAndData",query = "SELECT e FROM Evento e WHERE e.nome =:nome and e.data=:data")} )
+@NamedQuery(name = "Evento.findByNomeAndData",query = "SELECT e FROM Evento e WHERE e.nome =?1 and e.data=?2 ")
+        } 
+		)
 public class Evento implements Serializable {
 	
 	
