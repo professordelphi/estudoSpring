@@ -2,17 +2,18 @@ package com.estudo.spring.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-	@Table(name="patrocinio")
+@Table(name="patrocinio")
 public class Patrocinio implements Serializable {
-
-	
 	
 	/**
 	 * 
@@ -27,17 +28,12 @@ public class Patrocinio implements Serializable {
 	private String patrocinador;
 	
 	
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Evento evento;
 	
 	
 	public Patrocinio() {
 		// TODO Auto-generated constructor stub
-	}
-
-
-	@Override
-	public String toString() {
-		return "Patrocinio [codigo=" + codigo + ", patrocinador=" + patrocinador + ", evento=" + evento + "]";
 	}
 
 
@@ -61,6 +57,13 @@ public class Patrocinio implements Serializable {
 	}
 
 
+	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	public Evento getEvento() {
 		return evento;
 	}
@@ -71,16 +74,36 @@ public class Patrocinio implements Serializable {
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
+/**
+ * VERIFICAR O FLYWAY
+ * VERIFICAR O @JoinColumn se coloca no atributo ou no evento
+ * 
+ * @return
+ */
 
 
-	public Patrocinio(Long codigo, String patrocinador, Evento evento) {
-		super();
-		this.codigo = codigo;
-		this.patrocinador = patrocinador;
-		this.evento = evento;
-	}
+
+	
+
+
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+
+	
+
+
+	
 
 }

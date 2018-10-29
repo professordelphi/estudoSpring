@@ -1,13 +1,19 @@
 package com.estudo.spring.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
 
 
 
@@ -46,7 +52,11 @@ public class Evento implements Serializable {
 	
 	private String horario;
 	
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="evento")
+	@JoinColumn(name="evento_codigo")
+	private List<Patrocinio> patrocinio;
 	
+   
 	public String getNome() {
 		return nome;
 	}
@@ -75,11 +85,14 @@ public class Evento implements Serializable {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
-	@Override
-	public String toString() {
-		return "Evento [codigo=" + codigo + ", nome=" + nome + ", local=" + local + ", data=" + data + ", horario="
-				+ horario + "]";
+	public List<Patrocinio> getPatrocinio() {
+		return patrocinio;
 	}
+	public void setPatrocinio(List<Patrocinio> patrocinio) {
+		this.patrocinio = patrocinio;
+	}
+
+
 	
 
 }
