@@ -17,7 +17,7 @@ public interface EventoRepository extends CrudRepository<Evento,Long>{
 	
 	Evento findByCodigo(Long codigo);
 	List<Evento> findByNome(@Param("nome") String nome);
-	Evento findByNomeAndData(@Param("nome")String nome,String data);
+//	Evento findByNomeAndData(@Param("nome")String nome,String data);
 	
 	
 }

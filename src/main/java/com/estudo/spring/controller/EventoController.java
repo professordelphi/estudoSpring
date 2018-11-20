@@ -177,7 +177,7 @@ ModelAndView mv=new ModelAndView("evento/formlocalizarnomeanddata");
 	 	}
 	     
 	     //Troquei de @RequestPath para @RequestParam
-	     @RequestMapping(method=RequestMethod.GET,value="/listaevAPINomeAndData")
+	  /*   @RequestMapping(method=RequestMethod.GET,value="/listaevAPINomeAndData")
 	 	public Evento listaEventosAPI(@RequestParam("nome") String nome,@RequestParam("data") String data)
 	 	{
 
@@ -195,7 +195,7 @@ ModelAndView mv=new ModelAndView("evento/formlocalizarnomeanddata");
 	 		LOGGER.info("Lista de eventos "+ eventos.toString());
 	 	
 	 	    return eventos;
-	 	  }
+	 	  }*/
 	     
 	     
 	     
