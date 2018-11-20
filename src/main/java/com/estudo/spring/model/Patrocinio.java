@@ -2,10 +2,15 @@ package com.estudo.spring.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +31,13 @@ public class Patrocinio implements Serializable {
 	
 	private String patrocinador;
 	
-	
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="evento_codigo")
 	private Evento evento;
+	
+	
+	@Embedded
+	private Representante representante;
 	
 	
 	public Patrocinio() {
@@ -82,5 +92,18 @@ public class Patrocinio implements Serializable {
 		this.patrocinador = patrocinador;
 		this.evento = evento;
 	}
+
+
+	public Representante getRepresentante() {
+		return representante;
+	}
+
+
+	public void setRepresentante(Representante representante) {
+		this.representante = representante;
+	}
+
+
+	
 
 }

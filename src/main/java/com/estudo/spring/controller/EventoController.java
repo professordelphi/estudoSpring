@@ -1,5 +1,6 @@
 ﻿package com.estudo.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
@@ -199,6 +200,26 @@ ModelAndView mv=new ModelAndView("evento/formlocalizarnomeanddata");
 	     
 	     
 	     
+	     @RequestMapping(method=RequestMethod.GET,value="/listaEvento")
+	 	public List<Evento> listaEvento()
+	 	{
+
+	 		
+	    	 
+	    	 LOGGER.info("Lista de eventos campo nome ");
+	    	 
+	 		List<Evento> lista=new ArrayList<Evento>();
+		
+			Iterable<Evento> iterableEvento= eventoRepository.findAll();
+
+			lista=(List<Evento>) iterableEvento;
+	 		
+	 		
+	 		
+	 		LOGGER.info("Lista de eventos "+ iterableEvento.toString());
+	 	
+	 	    return  lista;
+	 	  }
 	     
 	     
 	     
