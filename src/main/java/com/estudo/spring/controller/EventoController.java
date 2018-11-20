@@ -1,4 +1,4 @@
-﻿package com.estudo.spring.controller;
+package com.estudo.spring.controller;
 
 import java.util.ArrayList;
 import java.util.List;
