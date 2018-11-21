@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @SpringBootApplication
-//@EnableAutoConfiguration
+@EnableAutoConfiguration
 @EntityScan(basePackages="com.estudo.spring.model")
 @ComponentScan(basePackages={"com.estudo.spring","controller"})
 @EnableJpaRepositories(basePackages={"com.estudo.spring.repository"})
